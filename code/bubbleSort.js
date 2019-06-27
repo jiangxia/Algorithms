@@ -1,23 +1,32 @@
 // 冒泡排序
 const bubbleSort = arr => {
   if (arr.length <= 1) return arr;
-
+  let lastExchangeIndex = 0;
+  let sortBorder = arr.length;
   for (let i = 0; i < arr.length; i++) {
     let hasChange = false;
 
-    for (let j = 0; j < arr.length - i - 1; j++) {
+    for (let j = 0; j < sortBorder; j++) {
       if (arr[j] > arr[j + 1]) {
-        let temp = arr[j];
+        const temp = arr[j];
         arr[j] = arr[j + 1];
         arr[j + 1] = temp;
         hasChange = true;
+        lastExchangeIndex = j;
       }
     }
+    sortBorder = lastExchangeIndex;
     if (!hasChange) break;
   }
   return arr;
 };
 
-let arr = [1, 3, 4, 52, 4, 5, 2, 4, 52, 1, 2, 7, 5, 4];
-arr = bubbleSort (arr);
-console.log (arr);
+const testArr = [];
+let i = 0;
+while (i < 100) {
+  testArr.push (Math.floor (Math.random () * 1000));
+  i++;
+}
+
+const res = bubbleSort (testArr);
+console.log (res);
